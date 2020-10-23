@@ -1,0 +1,73 @@
+
+.container{
+    background-color: white;
+    margin-left: 50%;
+    
+    margin-top: 2%;
+    height: 90rem;
+    border-radius: 5%;
+}
+
+/* NAVIGATION*/
+.navcontainer{
+    
+    border:1px solid red;
+    float: left;
+
+
+}
+
+.navcontainer button{
+    display: inline-block;  
+    margin: 0px auto;
+    margin-top:30px;
+    background-color: rgb(74, 167, 120);
+
+}
+.userinfo{    
+   font-size: 10px;
+}
+.userinfo li{ 
+    list-style-type: none;
+    font-size: large;
+}
+
+
+/* CENTER  */
+.center{    
+    height: 100%;    
+    display: inline-block;    
+    
+   
+}
+/* min sumary*/
+.min{
+    margin-top: 1%;
+    height: 25%;
+    border-bottom: 1px dotted black; 
+    float: left;      
+    border:1px solid blue;    
+}
+
+.res{
+    font-weight: 800;
+    font-size: 30px;
+    margin-top: 3%;
+}
+table {  
+    margin-top: 10px;  
+ 
+  }
+
+
+  /* max summary*/
+.max{
+    
+    font-size: 12px;
+    float: right;
+    border:1px solid green;    
+    
+   
+
+}
+
