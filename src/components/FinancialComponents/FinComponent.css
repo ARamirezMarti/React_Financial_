@@ -1,32 +1,32 @@
-
+*{
+    font-family: sans-serif;
+}
 .container{
-    background-color: white;
-    margin-left: 50%;
-    
+    background-color: rgba(255, 255, 255, 0.555);
+    margin-left: 50%;    
     margin-top: 2%;
-    height: 90rem;
-    border-radius: 5%;
+    overflow: auto;
 }
 
 /* NAVIGATION*/
 .navcontainer{
-    
-    border:1px solid red;
+    overflow: auto;
+    height: 100%;
+    margin-top: 2%;
     float: left;
-
-
 }
 
 .navcontainer button{
-    display: inline-block;  
-    margin: 0px auto;
-    margin-top:30px;
-    background-color: rgb(74, 167, 120);
+    display: inline-block;      
+    margin-top:15px; 
+    margin-bottom: 15px;
 
 }
-.userinfo{    
-   font-size: 10px;
+
+.userinfo h3{    
+   border: 1px solid black;
 }
+
 .userinfo li{ 
     list-style-type: none;
     font-size: large;
@@ -36,38 +36,55 @@
 /* CENTER  */
 .center{    
     height: 100%;    
-    display: inline-block;    
-    
-   
+    display: inline-block;   
 }
+
 /* min sumary*/
 .min{
+    columns: 3;
     margin-top: 1%;
-    height: 25%;
-    border-bottom: 1px dotted black; 
-    float: left;      
-    border:1px solid blue;    
+    display: inline-block;
+    height: 12%;
+    border-bottom: 1px dashed black;
+    border-left: 1px dashed black;           
 }
 
-.res{
-    font-weight: 800;
-    font-size: 30px;
-    margin-top: 3%;
+.minicontainer{
+    display: inline-block;
+    padding-top: 30px;
+    margin-top: 5%;
+    margin-bottom: 5%;
+    margin-left: 2%; 
+    opacity: 92%;
+    color: white;
+    border-radius: 10%;
+
 }
-table {  
-    margin-top: 10px;  
- 
-  }
-
-
+.minicontainer p{
+    font-weight: bolder;
+    font-size: 25px;   
+}
+.minicontainer h3{
+    font-weight: bolder;
+}
   /* max summary*/
-.max{
-    
+.max{    
+    font-size: 16px;
+    float: left;
+    border-left: 1px dashed black; 
+    text-align: center;
+}
+.max table{
+    border-bottom: 1px solid black;
     font-size: 12px;
-    float: right;
-    border:1px solid green;    
-    
-   
+    margin-left: 10%;
 
+    
+}
+.form{
+    margin-left: 25%;
+}
+.max h2{    
+    margin-left: 25%;
 }
 
