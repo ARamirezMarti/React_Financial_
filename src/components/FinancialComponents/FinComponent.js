@@ -16,13 +16,12 @@ function  FinComponent(){
     const[viewIncome,setVerIncome]= useState(false);    
     const[viewExpenses,setVerExp]= useState(false);
     const [startDate, setStartDate] = useState(new Date()); 
-    const [endDate, setEndDate] = useState(new Date()); 
     function showingIncome(){setVerIncome(viewIncome=>!viewIncome)};
     function showingExp(){setVerExp(viewExpenses=>!viewExpenses)};
     
     const dates={
         startDate,
-        endDate,
+        
     }
   
     useEffect(()=>{
@@ -51,10 +50,9 @@ function  FinComponent(){
                         <div className="userinfo ">
                             <h2> {getdata.data.ACCOUNT_NAME}</h2>
                             <hr></hr>
-                            <label>From</label>
+                            <label>Select month</label>
                             <DatePicker  selected={startDate} dateFormat="MM/yyyy" showMonthYearPicker onChange={date => setStartDate(date)} />
-                            <label>TO</label>
-                            <DatePicker  selected={endDate} onChange={date => setEndDate(date)} dateFormat="MM/yyyy" showMonthYearPicker />
+                            
                             
                         
 

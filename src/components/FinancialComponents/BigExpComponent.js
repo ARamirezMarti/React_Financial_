@@ -1,5 +1,6 @@
 import React,{useEffect,useState} from 'react';
-import './FinComponent.css'
+import './FinComponent.css';
+import compareDates from './common/common';
 
 
 
@@ -105,20 +106,37 @@ function BigExpComponent(props){
                   </tr>
                 </thead>
                 <tbody>
-                {getdata.data.map(item=>{
-                  return (
-                    
-                    <tr key={item.EXPENSES_ID}>
-                      <th>{item.EXPENSES_ID} </th>
-                      <td>{item.CATEGORY}</td>
-                      <td>{item.EXPECTED_AMOUNT}€ </td>
-                      <td>{item.AMOUNT}€ </td>
-                      <td><button  className="btn  btn-success btn-sm">Update</button> </td>
-                      <td><button  onClick={()=>{deleteData(item.EXPENSES_ID)} } className="btn  btn-danger btn-sm">Delete</button></td>
+                {
+                  getdata.data.map((item,index)=>{
+
+                  var resultado=false;
+
+                    (() => { 
+                      const dbDate = new Date(item.DATE_IN)
+                      resultado = compareDates(dbDate,props);
                       
-                  </tr>
-                  )
-                
+
+                      item.DATE_IN_FORMATED= new Intl.DateTimeFormat('es-ES').format(dbDate);
+                    })();
+
+                    if(resultado){
+                        return (
+                        <tr key={index}>
+                            <th>{item.EXPENSES_ID}</th>
+                            <td>{item.CATEGORY}</td>
+                            <td>{item.EXPECTED_AMOUNT}€ </td>
+                            <td>{item.AMOUNT}€ </td>
+                            <td>{item.DATE_IN_FORMATED}</td>                      
+                            <td><button onClick={()=>{deleteData(item.INCOME_ID)} } className="btn  btn-success btn-sm">Update</button> </td>
+                            <td><button onClick={()=>{deleteData(item.INCOME_ID)} } className="btn  btn-danger btn-sm">Delete</button></td>
+                            
+                        </tr>
+                      )
+
+                    }
+
+
+
                 })}
                
                 </tbody>

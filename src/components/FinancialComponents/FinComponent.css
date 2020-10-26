@@ -11,21 +11,22 @@
 
 /* NAVIGATION*/
 .navcontainer{
-    overflow: auto;
+    overflow: visible;
     height: 100%;
     margin-top: 2%;
     float: left;
-    position: absolute;
+    
 }
 
 .navcontainer button{
-    display: inline-block;      
-    margin-top:15px; 
+    display: block;
+    margin-left: 30%;      
+    margin-top:15px;
     margin-bottom: 15px;
 
 }
 .navcontainer input{ 
-    width: 50%;
+    width: 75%;
     
 }
 
@@ -76,7 +77,8 @@
   /* max summary*/
 .max{    
     font-size: 16px;
-    float: left;
+    float: right;
+    margin-right:8%;
     border-left: 1px dashed black; 
     text-align: center;
 }

@@ -1,5 +1,6 @@
 import React,{useState, useEffect} from 'react';
 import './FinComponent.css'
+import compareDates from './common/common'
 
 function BigIncComponent(props){   
 
@@ -59,21 +60,6 @@ function BigIncComponent(props){
   }
  
 
-  function compareDates(dbdate){
-    var startDate = props.dates.startDate;
-    var endDate = props.dates.endDate;
-
-    var startDateSplitted= startDate.toString().split(' ');
-    var endDateSplitted= endDate.toString().split(' ') 
-    var spliteddate = dbdate.toString().split(' ');
-
-    if (startDateSplitted[1]===endDateSplitted[1] && endDateSplitted[1]===spliteddate[1]) {
-      return true
-    }else{
-      return false
-    }
-
-  }
 
  
   useEffect(()=>{
@@ -125,33 +111,43 @@ function BigIncComponent(props){
                   </tr>
                 </thead>
                 <tbody>
-                {getdata.data.map(item=>{
+                {
                   
+                  getdata.data.map((item,index)=>{
+
+                  var resultado=false;
+
                   (() => { 
                     const dbDate = new Date(item.DATE_IN)
-                    var resultado = compareDates(dbDate);
-                    console.log(resultado)
+                     resultado = compareDates(dbDate,props);
+                    
     
                     item.DATE_IN_FORMATED= new Intl.DateTimeFormat('es-ES').format(dbDate);
                   })();
                   
-               
-                  return (
-                  <tr key={item.INCOME_ID}>
-                      <th>{item.INCOME_ID}</th>
-                      <td>{item.CATEGORY}</td>
-                      <td>{item.EXPECTED_AMOUNT}€ </td>
-                      <td>{item.AMOUNT}€ </td>
-                      <td>{item.DATE_IN_FORMATED}</td>                      
-                      <td><button onClick={()=>{deleteData(item.INCOME_ID)} } className="btn  btn-success btn-sm">Update</button> </td>
-                      <td><button onClick={()=>{deleteData(item.INCOME_ID)} } className="btn  btn-danger btn-sm">Delete</button></td>
-                      
-                  </tr>
-                  )
+                  if(resultado){
+                      return (
+                      <tr key={index}>
+                          <th>{item.INCOME_ID}</th>
+                          <td>{item.CATEGORY}</td>
+                          <td>{item.EXPECTED_AMOUNT}€ </td>
+                          <td>{item.AMOUNT}€ </td>
+                          <td>{item.DATE_IN_FORMATED}</td>                      
+                          <td><button onClick={()=>{deleteData(item.INCOME_ID)} } className="btn  btn-success btn-sm">Update</button> </td>
+                          <td><button onClick={()=>{deleteData(item.INCOME_ID)} } className="btn  btn-danger btn-sm">Delete</button></td>
+                          
+                      </tr>
+                    )
+
+                  }
+                  
+
+
                 })}
                  
                 </tbody>
               </table>
+
               <p style={{fontWeight:'bolder'}}>{message}</p>
               
                    
