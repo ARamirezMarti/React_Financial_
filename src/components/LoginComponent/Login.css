@@ -14,32 +14,28 @@ body{
   font-style: italic;
   color:  rgb(85, 148, 156);
   font-weight: bold;
+  float: left;
 }
 .form{
   margin-top: 5%;
   font-weight: bold;
 }
-.form-group{
-  margin-top: 5%;
+.form button{
+  margin-top: 10%;
 }
 
-#sign{   
-  display: block;
-}
+
 
 .container h2{
   padding-top: 1%;
   font-style: italic;
   color:  rgb(61, 93, 196);
   font-weight: bold;
+  
 }
-#sign button{
-  margin-top: 5px;
-}
-#navi button{
-  margin-top: 5px;
-}
+
+
 .alert{
   color: red;
-  font-weight: bolder;
+  
 }

@@ -45,23 +45,23 @@ function Login (props) {
 
   return (
     <div>
-        <div className="container col-4">
-          <h1> Financial App Login</h1>
-          <p className="alert" >{alert}</p>
-          <form className="form"  onSubmit={handleLogin}>
+        <div className="container col-6">
+          <h2> Financial App Login</h2>
+
+          <form className="form  col-6"  onSubmit={handleLogin}>
               <div className="form-group">
-                <label htmlFor="email"></label>
+                <label htmlFor="email">Email</label>
                 <input type="email" className="form-control" name="email" placeholder="Your email"></input>
               </div>
               <div className="form-group">
-                <label htmlFor="password"></label>
+                <label htmlFor="password">Password</label>
                 <input type="password" className="form-control" name="password" placeholder=" Your Password"></input>
               </div>
               <button  className="btn btn-outline-success">Log in</button>
             </form>
-            
-            <a  href="/signup" > Sign Up with new account</a>
-         
+            <p className="alert" >{alert}</p>    
+            <div id="href"><a  href="/signup" > Sign Up with new account</a></div>
+                 
         </div>  
 
 

@@ -41,11 +41,10 @@ function SignupComponent(props){
     
         return(
             <div>
-              <div className="container col-4">
+              <div className="container col-6">
             <h2>Sign UP Financial App Login</h2>
-                <p className="alert" >{alert}</p>
 
-            <form className="form" onSubmit={handleLogin}>
+            <form className="form col-6" onSubmit={handleLogin}>
               <div className="form-group">
                 <label htmlFor="acc">Account name</label>
                 <input type="acc" className="form-control" name="account" placeholder="Your desired account name"></input>
@@ -63,6 +62,8 @@ function SignupComponent(props){
               </div>
               
             </form>
+            <p className="alert" >{alert}</p>
+
             <a href="/"> Go back Log in</a>
 
           </div>

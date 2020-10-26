@@ -2,6 +2,7 @@ import React,{useState, useEffect} from 'react';
 import './FinComponent.css'
 
 function BigIncComponent(props){   
+
   const [getdata,setGetData] = useState({data:[]});
   const [message,setMessage] = useState('');
   const URL = 'http://localhost:3500/app/';
@@ -45,6 +46,8 @@ function BigIncComponent(props){
   }  
 
    const incomeData =  async () => {
+     console.log("PROPS",props); 
+    
     const geturl = URL+'getincome'
     await fetch(geturl,{
       credentials:'include'
@@ -55,6 +58,22 @@ function BigIncComponent(props){
           });
   }
  
+
+  function compareDates(dbdate){
+    var startDate = props.dates.startDate;
+    var endDate = props.dates.endDate;
+
+    var startDateSplitted= startDate.toString().split(' ');
+    var endDateSplitted= endDate.toString().split(' ') 
+    var spliteddate = dbdate.toString().split(' ');
+
+    if (startDateSplitted[1]===endDateSplitted[1] && endDateSplitted[1]===spliteddate[1]) {
+      return true
+    }else{
+      return false
+    }
+
+  }
 
  
   useEffect(()=>{
@@ -80,7 +99,7 @@ function BigIncComponent(props){
                     </div>
                     <div className="form-group">
                       <label htmlFor="expamount"> Expect amount </label>
-                      <input type="number" name="expamount" className="form-control"  placeholder=" Expected amount" d></input>
+                      <input type="number" name="expamount" className="form-control"  placeholder=" Expected amount" ></input>
                     </div>
                     <div className="form-group">
                       <label htmlFor="amount"> Amount</label>
@@ -91,8 +110,8 @@ function BigIncComponent(props){
                             
                 </form>
               </div>
-              <p>{message}</p>
-              <table className="table">
+              
+              <table className="table" style={{marginTop:'5%'}}>
               
                 <thead className="thead-dark">
                   <tr>
@@ -110,8 +129,10 @@ function BigIncComponent(props){
                   
                   (() => { 
                     const dbDate = new Date(item.DATE_IN)
+                    var resultado = compareDates(dbDate);
+                    console.log(resultado)
+    
                     item.DATE_IN_FORMATED= new Intl.DateTimeFormat('es-ES').format(dbDate);
-
                   })();
                   
                
@@ -131,6 +152,7 @@ function BigIncComponent(props){
                  
                 </tbody>
               </table>
+              <p style={{fontWeight:'bolder'}}>{message}</p>
               
                    
            

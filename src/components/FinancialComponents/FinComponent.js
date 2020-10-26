@@ -2,7 +2,8 @@ import React,{useState,useEffect} from 'react';
 import ResumeComponent from './ResumeComponent'
 import BigIncComponent from './BigIncComponent'
 import BigExpComponent from './BigExpComponent'
-
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 import './FinComponent.css'
 
 
@@ -13,12 +14,19 @@ function  FinComponent(){
     const [getdata,setGetData] = useState({data:[]})
     
     const[viewIncome,setVerIncome]= useState(false);    
-    const[viewExpenses,setVerExp]= useState(false); 
+    const[viewExpenses,setVerExp]= useState(false);
+    const [startDate, setStartDate] = useState(new Date()); 
+    const [endDate, setEndDate] = useState(new Date()); 
     function showingIncome(){setVerIncome(viewIncome=>!viewIncome)};
     function showingExp(){setVerExp(viewExpenses=>!viewExpenses)};
+    
+    const dates={
+        startDate,
+        endDate,
+    }
   
     useEffect(()=>{
-
+        
         fetch(URL,{
             credentials:'include'
                })
@@ -39,12 +47,15 @@ function  FinComponent(){
             <div>
                 <div className=" container col-10 ">
                  
-                    <nav className=" center navcontainer col-2 ">
+                    <nav className=" center navcontainer col-3 ">
                         <div className="userinfo ">
                             <h2> {getdata.data.ACCOUNT_NAME}</h2>
                             <hr></hr>
-                            <h4>Date From</h4>
-                            <h4>Date to</h4>
+                            <label>From</label>
+                            <DatePicker  selected={startDate} dateFormat="MM/yyyy" showMonthYearPicker onChange={date => setStartDate(date)} />
+                            <label>TO</label>
+                            <DatePicker  selected={endDate} onChange={date => setEndDate(date)} dateFormat="MM/yyyy" showMonthYearPicker />
+                            
                         
 
                             
@@ -64,9 +75,9 @@ function  FinComponent(){
 
                     
                     </nav>
-                      <ResumeComponent getdata={getdata}  /> 
-                    <BigIncComponent viewIncome={viewIncome} />
-                    <BigExpComponent viewExpenses={viewExpenses} />
+                      <ResumeComponent getdata={getdata}  dates={dates} /> 
+                    <BigIncComponent viewIncome={viewIncome}  dates={dates}/>
+                    <BigExpComponent viewExpenses={viewExpenses}  dates={dates}/>
                     
                     
                    

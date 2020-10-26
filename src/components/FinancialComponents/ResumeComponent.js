@@ -12,7 +12,7 @@ function ResumeComponent(props){
                    
                    
            
-               <div className="  min  col-10 ">
+               <div className="  min  col-9 ">
 
                <div className="minicontainer col-12" style={{color:'rgb(1, 172, 1)',border:'1px solid rgb(1, 172, 1)'}}>
                 <h3>Total income</h3>

@@ -6,6 +6,7 @@
     margin-left: 50%;    
     margin-top: 2%;
     overflow: auto;
+    color:t;
 }
 
 /* NAVIGATION*/
@@ -14,6 +15,7 @@
     height: 100%;
     margin-top: 2%;
     float: left;
+    position: absolute;
 }
 
 .navcontainer button{
@@ -21,6 +23,10 @@
     margin-top:15px; 
     margin-bottom: 15px;
 
+}
+.navcontainer input{ 
+    width: 50%;
+    
 }
 
 .userinfo h3{    
@@ -88,3 +94,6 @@
     margin-left: 25%;
 }
 
+#picker{
+    position:relative;
+}
