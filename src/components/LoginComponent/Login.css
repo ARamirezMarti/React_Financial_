@@ -1,26 +1,28 @@
+*{
+  margin: 0px auto;
+}
 body{
   background-image: url("deg.png");
 }
-.container{
-  background-color: white;
+.containerLogin{
+  background-color: rgba(255, 255, 255, 0.712);
   text-align: center;
-  margin-top: 10%;
-  
-  
+  margin-top: 5%;   
   border-radius: 5%;
+
 }
-.container h1{
+.containerLogin h2{
   padding-top: 5%;
   font-style: italic;
   color:  rgb(85, 148, 156);
-  font-weight: bold;
-  float: left;
+  font-weight: bold;  
+
 }
-.form{
-  margin-top: 5%;
+.formLogin{
+  margin-top: 5%; 
   font-weight: bold;
 }
-.form button{
+.formLogin button{
   margin-top: 10%;
 }
 

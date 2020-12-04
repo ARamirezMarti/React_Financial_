@@ -41,13 +41,13 @@ function SignupComponent(props){
     
         return(
             <div>
-              <div className="container col-6">
+              <div className="containerLogin col-6">
             <h2>Sign UP Financial App Login</h2>
 
-            <form className="form col-6" onSubmit={handleLogin}>
+            <form className="formLogin col-6" onSubmit={handleLogin}>
               <div className="form-group">
-                <label htmlFor="acc">Account name</label>
-                <input type="acc" className="form-control" name="account" placeholder="Your desired account name"></input>
+                <label htmlFor="acc" >Account name</label>
+                <input type="acc" className="form-control" maxLength="10" name="account" placeholder="Your desired account name"></input>
               </div>
               <div className="form-group">
                 <label htmlFor="exampleInputPassword1">Your Password</label>

@@ -1,55 +1,30 @@
 import React,{useEffect,useState} from 'react';
 import './FinComponent.css';
 import compareDates from './common/common';
-
-
+import {sendData,deleteData} from './API/expenses.request';
+import {URL } from './FinComponent'
 
 
 function BigExpComponent(props){
   const [getdata,setGetData] = useState({data:[]});
   const [message,setMessage] = useState('');
-  const URL = 'http://localhost:3500/app/';
  
-  const sendData = async(e) => {
+ const getEntry = async (e)=>{
     e.preventDefault();
-    const posturl = URL+'addexpenses'
     const data = {
       CATEGORY:e.target.category.value,
       EXPECTED_AMOUNT:e.target.expamount.value,
       AMOUNT:e.target.amount.value
-    } 
-    await fetch(posturl,{     
-      method:'POST',  
-      headers:{'Content-Type':'Application/json'},
-      body:JSON.stringify(data),
-      credentials:'include',   
-    })
-    .then ((response)=>response.json())
-    .then((data)=>{
-      if(data.error){
-        setMessage(data.error)               
-      } 
-      setMessage('Added')    
-      expnsesData();    
-    }) 
-    .catch((error)=>console.log(error))    
-    
+    }     
+    await sendData(JSON.stringify(data),setMessage,expensesData,props.getDataFunction);
   };
 
-  const deleteData =  async (id) => {
-    console.log(id);
-    const deleteURL= URL + `deleteexpenses/${id}`
-    await fetch(deleteURL,{
-      method:'DELETE',
-      headers:{'Content-Type':'Application/json'},
-      credentials:'include',  
-    })
-    .then ((response)=>response.json())
-    .then((data)=>{ expnsesData();  setMessage(`Item ${id} deleted`)})
+  const deleteEntry = async (id) =>{
+    await deleteData(id,setMessage,props.getDataFunction);
+    await expensesData();
+  };
 
-  }  
-
-   const expnsesData =  async () => {
+  const expensesData =  async () => {
     const geturl = URL+'getexpenses'
     await fetch(geturl,{
       credentials:'include'
@@ -58,25 +33,19 @@ function BigExpComponent(props){
         .then((data)=>{ 
           setGetData({data:data.data})            
           });
-  }
+  };
  
-
- 
-  useEffect(()=>{
-    
-    expnsesData();
-         
-             
-
+  useEffect(()=>{  
+    expensesData();             
   },[]);
       
     
         return(
             <div>
            <div  className=" max col-8" style={props.viewExpenses ? {display:'inline'}:{display:'none'}}>
-                <h2 style={{color:'black'}}>Expenses</h2>
+                <h3 style={{color:'black'}}>Expenses</h3>
                 <div >
-                <form className="form"  onSubmit={sendData} >
+                <form className="form"  onSubmit={getEntry} >
                     <div className=" form-group ">
                       <label htmlFor="category">Category</label>
                       <input type="text" name="category" className="form-control"  placeholder="Category"></input>
@@ -89,9 +58,10 @@ function BigExpComponent(props){
                       <label htmlFor="amount"> Amount</label>
                       <input type="number" name="amount" className="form-control"  placeholder="Amount"></input>
                     </div>
-                    <button   className="btn btn-outline-success">Add income</button>        
-                            
+                    <button   className="btn btn-outline-success" id="sendButton">Add Expense</button>   
                 </form>
+                     
+
               </div >
              
               <table className="table" style={{marginTop:'5%'}}>
@@ -101,6 +71,7 @@ function BigExpComponent(props){
                     <th scope="col">CATEGORY</th>
                     <th scope="col">EXPECTED AMOUNT</th>
                     <th scope="col">AMOUNT</th>
+                    <th scope="col">Added on</th>
                     <th scope="col"></th>
                     <th scope="col"></th>
                   </tr>
@@ -113,9 +84,7 @@ function BigExpComponent(props){
 
                     (() => { 
                       const dbDate = new Date(item.DATE_IN)
-                      resultado = compareDates(dbDate,props);
-                      
-
+                      resultado = compareDates(dbDate,props);                    
                       item.DATE_IN_FORMATED= new Intl.DateTimeFormat('es-ES').format(dbDate);
                     })();
 
@@ -127,8 +96,8 @@ function BigExpComponent(props){
                             <td>{item.EXPECTED_AMOUNT}€ </td>
                             <td>{item.AMOUNT}€ </td>
                             <td>{item.DATE_IN_FORMATED}</td>                      
-                            <td><button onClick={()=>{deleteData(item.INCOME_ID)} } className="btn  btn-success btn-sm">Update</button> </td>
-                            <td><button onClick={()=>{deleteData(item.INCOME_ID)} } className="btn  btn-danger btn-sm">Delete</button></td>
+                            <td><button className="btn btn-success btn-sm">Update</button> </td>
+                            <td><button onClick={()=>{deleteEntry(item.EXPENSES_ID)} } className="btn  btn-danger btn-sm">Delete</button></td>
                             
                         </tr>
                       )

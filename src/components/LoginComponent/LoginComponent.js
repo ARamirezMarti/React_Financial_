@@ -2,6 +2,7 @@ import React ,{useState} from 'react';
 import './Login.css';
 
 
+//export const URL= 'http://localhost:4500/app/';
 
 
 
@@ -21,8 +22,7 @@ function Login (props) {
    
    var myHeaders = new Headers();
    myHeaders.append('Content-Type', 'application/json');
-
-  await fetch('http://localhost:3500/login',{
+   await fetch('http://localhost:3500/login',{
      method:'POST',
      headers:myHeaders,
      body:JSON.stringify(data),
@@ -31,8 +31,12 @@ function Login (props) {
    }).then(response=>response.json())
      .then((data)=>{
        if (data.ok === true) {
+        if( document.cookie.includes("token")){
+          document.cookie=`token=${data.token}`
+        }
+       
+        document.cookie=`token=${data.token}`;
         props.history.push('/app');
-        document.cookie=`token= ${data.token}`;
        } else {
          setAlert(data.tag);   
        }
@@ -45,13 +49,13 @@ function Login (props) {
 
   return (
     <div>
-        <div className="container col-6">
+        <div className="containerLogin col-6">
           <h2> Financial App Login</h2>
 
-          <form className="form  col-6"  onSubmit={handleLogin}>
+          <form className="formLogin  col-6"  onSubmit={handleLogin}>
               <div className="form-group">
                 <label htmlFor="email">Email</label>
-                <input type="email" className="form-control" name="email" placeholder="Your email"></input>
+                <input type="email" className="form-control" name="email" placeholder="Your email" ></input>
               </div>
               <div className="form-group">
                 <label htmlFor="password">Password</label>
